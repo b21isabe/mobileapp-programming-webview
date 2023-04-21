@@ -9,6 +9,7 @@ Sen aktiverade jag javascript för webviewen med hjälp av webkittet websettings
 Till sist skapade jag en ny lokal html sida som placerades i en asset-folder, och laddade in den sidan i den interna web page funktionen. Jag ändrade då även så att his.se skulle laddas in i den externa web page funktionen.
 
 
+
 Kodexempel 1:
 ```
 <resources>
@@ -40,6 +41,15 @@ Kodexempel 5:
 import android.webkit.WebViewClient;
 import android.webkit.WebSettings;
 ...
+
+    public void showExternalWebPage(){
+        myWebView.loadUrl("https://his.se");
+    }
+
+    public void showInternalWebPage(){
+        myWebView.loadUrl("file:android_asset/html/htmlsida.html");
+    }
+
     private WebView myWebView;
 
     @Override
@@ -54,13 +64,13 @@ import android.webkit.WebSettings;
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_external_web) {
             Log.d("==>","Will display external web page");
-            myWebView.loadUrl("https://his.se");
+            showExternalWebPage();
             return true;
         }
 
         if (id == R.id.action_internal_web) {
             Log.d("==>","Will display internal web page");
-            myWebView.loadUrl("file:android_asset/html/htmlsida.html");
+            showInternalWebPage();
             return true;
         }
     ...
